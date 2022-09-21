@@ -21,7 +21,8 @@ void setup()
     pinMode(coi, OUTPUT);
     pinMode(doi_pass,INPUT);
     digitalWrite(coi,HIGH);
-    digitalWrite(khoa,HIGH); 
+    digitalWrite(khoa,HIGH);
+    digitalWrite(khoa,LOW);
     EEPROM.setMemPool(0, 1024); //vị tri dau tien và dung luong cua eeprom
     EEPROM.setMaxAllowedWrites(1024); // số byte cho phép lưu
     passeeprom=EEPROM.readInt(luu_pass_eeprom);
@@ -30,6 +31,7 @@ void setup()
 }
 void loop() 
 {   // đóng khóa sau 2s
+     if (digitalRead(doi_pass) == 0){
     if(millis()-time_cho>=1200){
       digitalWrite(khoa,LOW);
     digitalWrite(coi,LOW);}
@@ -54,10 +56,11 @@ void loop()
         digitalWrite(coi,HIGH);
         delay(3000);}
     }////hết
-    
+     }
    
     /// đỏi mật khẩu
-  if (digitalRead(doi_pass) == 1)
+  //if (digitalRead(doi_pass) == 1)
+    else
   {     
     if(i==2)
     {
